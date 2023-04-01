@@ -38,6 +38,8 @@ const VertBlock = styled.div`
 `
 
 const LongBlock = styled.div`
+  display: flex;
+  flex-direction: row;
   width: 100%;
   height: 60vh;
   border-radius: 20px;
@@ -61,12 +63,37 @@ const StyledInfo = styled.div`
   background-color: #2b3445;
 `
 
+const StyledInfoP = styled.p`
+  display: flex;
+  font-size: 22px;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 1);
+  margin: 20px;
+  height: auto;
+  width: 70%;
+  justify-content: center;
+  align-items: center;
+`
+
+const StyledPicture = styled.a`
+  display: flex;
+  width: 30%;
+  height: auto;
+  background-color: black;
+  border-radius: 20px;
+  margin: auto 20px;
+  justify-content: center;
+`
+
 const Home = () => {
   return (
     <StyledContainer>
       <StyledSection>
         <StyledLeft>
-          <LongBlock></LongBlock>
+          <LongBlock>
+            <StyledPicture> Hello </StyledPicture>
+            <StyledInfoP> Home </StyledInfoP>
+          </LongBlock>
           <StyledBottom>
             <StyledUpload></StyledUpload>
             <StyledInfo></StyledInfo>
