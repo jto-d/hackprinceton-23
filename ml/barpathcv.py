@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-image = cv2.imread("ml/pictures/trainingpicFR.jpeg")
+image = cv2.imread("pictures/trainingpic.jpeg")
 
 lower_color = np.array([80, 40, 50])
 upper_color = np.array([150, 100, 100])

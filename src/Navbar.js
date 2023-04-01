@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 const StyledHeader = styled.div`
-  font-size: 22px;
+  font-size: 30px;
+  font-family: var(--font-nunito);
+  font-weight: 600;
   padding: 20px 60px;
   border-bottom: 1px; 
   border-color: black;
