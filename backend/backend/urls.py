@@ -18,6 +18,6 @@ from django.urls import path, include
 from django.views.generic.base import TemplateView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/user/', include('accounts.urls'), namespace='accounts')
+    # path('admin/', admin.site.urls),
+    path('api/accounts/', include('accounts.urls'))
 ]
