@@ -1,6 +1,9 @@
 import { useState } from "react";
 import styled from "styled-components";
 import LiftList from "../components/LiftList";
+import UploadIcon from '@mui/icons-material/Upload';
+
+const transparent = `rgba(0, 0, 0, 0)`;
 
 const StyledSection = styled.div`
   display: flex;
@@ -10,6 +13,8 @@ const StyledSection = styled.div`
 `
 
 const StyledContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   height: 88vh;
   margin-left: 100px;
   margin-right: 40px;
@@ -33,15 +38,19 @@ const StyledLeft = styled.div`
 `
 
 const VertBlock = styled.div`
+  display: flex;
+  flex-direction: column;
   height: 88vh;
   width: 50%;
   border-radius: 20px;
   background-color: #2b3445;
+  align-items: center;
+  gap: 10px;
 `
 
 const LongBlock = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
   height: 60vh;
   border-radius: 20px;
@@ -50,13 +59,24 @@ const LongBlock = styled.div`
 `
 
 const StyledUpload = styled.button`
+  display: flex;
+  flex-direction: column;
   height: 100%;
   width: 30%;
   display: flex;
   background-color: #0058ff;
   border: none;
   border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  &:hover {
+        background-color: #0241b8;
+    }
 `
+
+
 
 const StyledInfo = styled.div`
   height: 100%;
@@ -98,13 +118,94 @@ const StyledInfoTitle = styled.div`
   display: flex;
   flex-direction: column;
   z-index: 100;
-  background-color: rgba(0,0,0,0);
+  background-color: transparent;
   height: 10%;
   justify-content: left;
   margin: 20px 12px 30px 20px;
 `
 
+const StyledUploadTitle = styled.div`
+  font-size: 20px; 
+  font-weight: 600;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  background-color: transparent;
+  height: 10%;
+  justify-content: center;
+  margin: 10px;
+`
 
+const ResultTitle = styled.div`
+  display: flex;
+  background-color: transparent;
+  height: auto;
+  width: auto;
+  justify-content: center;
+  margin: 30px 20px 60px 20px;
+  font-size: 26px;
+  font-weight: 600;
+`
+
+const ScoreIcon = styled.div`
+  display: flex;
+  font-size: 120px;
+  font-weight: 600;
+  background-color: transparent;
+  height: 250px;
+  width: 250px;
+  border: 20px solid #0058ff;
+  border-radius: 150px;
+  margin-bottom: 50px;
+  justify-content: center;
+  align-items: center;
+`
+
+const StyledSummary = styled.div`
+  display: flex;
+  background-color: transparent;
+  height: 20%;
+  width: 250px;
+  font-size: 20px;
+  justify-content: center;
+  align-items: center;
+
+`
+
+const LongBlockTitle = styled.div`
+  font-size: 26px; 
+  font-weight: 600;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  background-color: transparent;
+  height: 10%;
+  justify-content: left;
+  margin: 20px 12px 30px 40px;
+`
+
+const StyledInstructions = styled.div`
+    display: flex;
+    flex: 1;
+    font-size: 20px; 
+    background-color: transparent;
+    height: 100%;
+    margin: 8px;
+    margin-left: 80px;
+    justify-content: left;
+  `
+
+  const DashboardTitle = styled.div`
+    font-size: 30px;
+    font-weight: 600;
+    padding: 20px 60px 20px 0px;
+    border-bottom: 1px; 
+    border-color: black;
+    display: flex;
+  
+  `
 
 const Dashboard = () => {
   const [lifts, setLifts] = useState([
@@ -116,21 +217,33 @@ const Dashboard = () => {
   return (
     <StyledContainer>
       <StyledSection>
+        <DashboardTitle> Caple's Dashboard </DashboardTitle>
+      </StyledSection>
+      <StyledSection>
         <StyledLeft>
           <LongBlock>
-            
+            <LongBlockTitle> How to Use </LongBlockTitle>
+            <StyledInstructions> Step 1: Upload a video of your exercise </StyledInstructions>
+            <StyledInstructions> Step 2: Wait for our AI to generate a FormScore&#174; </StyledInstructions>
+            <StyledInstructions> Step 3: Use our suggestions to improve your form and exercise more effectively </StyledInstructions>
           </LongBlock>
           <StyledBottom>
-            <StyledUpload></StyledUpload>
+            <StyledUpload>
+              <UploadIcon style={{backgroundColor: 'transparent', height: 100, width: 100}}></UploadIcon>
+              <StyledUploadTitle> Upload </StyledUploadTitle>
+            </StyledUpload>
             <StyledInfo>
               <StyledInfoTitle> Recent Uploads </StyledInfoTitle>
               <LiftList lifts={lifts}/>
             </StyledInfo>
           </StyledBottom>          
         </StyledLeft>
-        <VertBlock></VertBlock>
+        <VertBlock>
+          <ResultTitle> Insert Lift </ResultTitle>
+          <ScoreIcon> 90 </ScoreIcon>
+          <StyledSummary> Your average FormScore is in the top 1%</StyledSummary>
+        </VertBlock>
       </StyledSection>
-    
     </StyledContainer>
   );
 }
