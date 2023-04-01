@@ -20,28 +20,38 @@ const StyledPhoto = styled.div`
 const StyledButtons = styled.div`
     display: flex;
     flex-direction: row;
-    gap: 15px;
+    gap: 30px;
     margin-top: 1rem;
 `
 
-const StyledButton = styled.div`
+const StyledButton = styled.a`
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 1rem 1.5rem;
     width: 15%;
 
+    text-decoration: none;
+    box-shadow: 1px 1px 3px black;
 
     background-color: #0058FF;
     font-weight: 400;
-    letter-spacing: .1em;
+    letter-spacing: 0.05em;
     color: #DAE9FF;
     cursor: pointer;
-    border-radius: 20px;
+    border-radius: 25px;
+
+    &:hover {
+        background-color: #0241b8;
+    }
 
     ${props => props.invert && css`
         background-color: #2B3445;
-        color: white;
+        color: #DAE9FF;
+
+        &:hover {
+            background-color: #191f29;
+        }
     `}
 
 `
@@ -53,7 +63,7 @@ const StyledCircle = styled.div`
     background-color: #DAE9FF;
     margin-left: -4vw;
     margin-top: -4vh;
-    z-index: 0;
+    z-index: 2;
     position: absolute;
     /* margin-bottom: 55vh; */
 `
@@ -100,11 +110,11 @@ const Home = () => {
                 Fix your form
             </h1>
             <p>
-                Form Fit analyzes your form using computer vision to give detailed insights on correcting your bench press form to minimize injury and maximize muscle gain.
+                Form Fit analyzes your form using computer vision to give detailed insights on correcting bench press form to minimize injury and maximize muscle gain.
             </p>
             <StyledButtons>
-                <StyledButton>Register</StyledButton>
-                <StyledButton invert>Log In</StyledButton>
+                <StyledButton href='/register'>Register</StyledButton>
+                <StyledButton href='/login' invert>Log In</StyledButton>
             </StyledButtons>
             
         </StyledHeroText>
