@@ -1,4 +1,4 @@
-import useState from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import LiftList from "../components/LiftList";
 
@@ -92,35 +92,25 @@ const StyledPicture = styled.a`
 `
 
 const StyledInfoTitle = styled.div`
-  font-size: 20; 
+  font-size: 20px; 
   font-weight: 600;
   text-align: left;
   display: flex;
   flex-direction: column;
   z-index: 100;
-  background-color: rgba(0,0,0,1);
+  background-color: rgba(0,0,0,0);
   height: 10%;
   justify-content: left;
-  margin: 12px;
+  margin: 20px 12px 20px 20px;
 `
 
-const StyledInfoEntry = styled.p`
-  display: flex;
-  font-size: 22px;
-  z-index: 100;
-  background-color: rgba(0, 0, 0, 1);
-  margin: 5px 0px;
-  height: 20%;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-`
 
-const Home = () => {
-  const [lifts] = useState([
-    { name: 'bench', weight: 135, date: '1/26', id: 1 },
-    { name: 'squat', weight: 225, date: '1/30', id: 2 },
-    { name: 'deadlift', weight: 375, date: '2/17', id: 3 },
+
+const Dashboard = () => {
+  const [lifts, setLifts] = useState([
+    { name: 'bench', weight: 135, date: '1/26', form: 55, id: 1 },
+    { name: 'squat', weight: 225, date: '1/30', form: 90, id: 2 },
+    { name: 'deadlift', weight: 375, date: '2/17', form: 72, id: 3 },
   ])
   
   return (
@@ -133,7 +123,7 @@ const Home = () => {
           <StyledBottom>
             <StyledUpload></StyledUpload>
             <StyledInfo>
-              <StyledInfoTitle> Title </StyledInfoTitle>
+              <StyledInfoTitle> Recent Uploads </StyledInfoTitle>
               <LiftList lifts={lifts}/>
             </StyledInfo>
           </StyledBottom>          
@@ -145,4 +135,4 @@ const Home = () => {
   );
 }
  
-export default Home;
+export default Dashboard;
