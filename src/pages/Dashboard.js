@@ -101,16 +101,16 @@ const StyledInfoTitle = styled.div`
   background-color: rgba(0,0,0,0);
   height: 10%;
   justify-content: left;
-  margin: 20px 12px 20px 20px;
+  margin: 20px 12px 30px 20px;
 `
 
 
 
 const Dashboard = () => {
   const [lifts, setLifts] = useState([
-    { name: 'bench', weight: 135, date: '1/26', form: 55, id: 1 },
-    { name: 'squat', weight: 225, date: '1/30', form: 90, id: 2 },
-    { name: 'deadlift', weight: 375, date: '2/17', form: 72, id: 3 },
+    { name: 'Bench Press', weight: 135, date: '1/26', form: 55, id: 1 },
+    { name: 'Bicep Curl', weight: 60, date: '1/30', form: 76, id: 2 },
+    { name: 'Bench Press', weight: 150, date: '2/17', form: 33, id: 3 },
   ])
   
   return (

@@ -17,8 +17,8 @@ const StyledDiv = styled.div`
 const Navbar = () => {
   return (
     <StyledHeader>
-      <StyledDiv> Logo </StyledDiv>
-      <StyledDiv> Name </StyledDiv>
+      <StyledDiv> User </StyledDiv>
+      <StyledDiv> Dashboard </StyledDiv>
     </StyledHeader>
   );
 }

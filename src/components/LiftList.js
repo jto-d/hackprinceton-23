@@ -30,7 +30,8 @@ const LiftList = (props) => {
     background-color: rgba(0, 0, 0, 0);
     height: 100%;
     margin: 8px;
-    text-align: center;
+    justify-content: center;
+    align-items: center;
   `
 
   const StyledInfoName = styled.div`
@@ -39,7 +40,20 @@ const LiftList = (props) => {
     background-color: rgba(0, 0, 0, 0);
     height: 100%;
     margin-left: 40px;
-    text-align: left;
+    justify-content: left;
+    align-items: center;
+  `
+
+  const StyledFormBlock = styled.div`
+    display: flex;
+    background-color: #0058ff;
+    height: 100%;
+    width: auto;
+    margin: 8px 40px 8px 8px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    padding: 0px 10px;
   `
 
   return (
@@ -47,9 +61,9 @@ const LiftList = (props) => {
       {lifts.map((lift) => (
         <StyledInfoContainer key={lift.id}>
           <StyledInfoName> { lift.name } </StyledInfoName>
-          <StyledInfoEntry> { lift.weight } </StyledInfoEntry>
+          <StyledInfoEntry> { lift.weight } lbs </StyledInfoEntry>
           <StyledInfoEntry> { lift.date } </StyledInfoEntry>
-          <StyledInfoEntry> Form: { lift.date } </StyledInfoEntry>
+          <StyledFormBlock> Form: { lift.form } </StyledFormBlock>
         </StyledInfoContainer>
       ))}
     </StyledWrapper>
