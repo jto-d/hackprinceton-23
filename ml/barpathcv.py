@@ -47,6 +47,7 @@ while True:
 
     for contour in contours:
         if cv2.contourArea(contour) > min_area and first_contour:  # Set a minimum area to filter out noise
+            first_contour = False
             (x, y, w, h) = cv2.boundingRect(contour)
             center_x = int(x + w / 2)
             center_y = int(y + h / 2)
@@ -63,7 +64,7 @@ while True:
                 first_center_y = center_y
                 # cv2.circle(bar_path, (first_center_x, first_center_y), radius = 50, color=(255,255,255), thickness = 10)
                 first_frame = False
-        first_contour = False
+        
 
     lowest = contour_coords[0][1]
     for coord in contour_coords:
