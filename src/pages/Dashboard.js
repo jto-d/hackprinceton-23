@@ -1,4 +1,6 @@
+import useState from "react";
 import styled from "styled-components";
+import LiftList from "../components/LiftList";
 
 const StyledSection = styled.div`
   display: flex;
@@ -60,6 +62,7 @@ const StyledInfo = styled.div`
   height: 100%;
   width: 70%;
   display: flex;
+  flex-direction: column;
   border-radius: 20px;
   background-color: #2b3445;
 `
@@ -91,30 +94,47 @@ const StyledPicture = styled.a`
 const StyledInfoTitle = styled.div`
   font-size: 20; 
   font-weight: 600;
-
+  text-align: left;
   display: flex;
   flex-direction: column;
   z-index: 100;
   background-color: rgba(0,0,0,1);
-  height: auto;
+  height: 10%;
   justify-content: left;
-  margin-left: 12px;
-  margin-top: 12px;
+  margin: 12px;
+`
+
+const StyledInfoEntry = styled.p`
+  display: flex;
+  font-size: 22px;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 1);
+  margin: 5px 0px;
+  height: 20%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 `
 
 const Home = () => {
+  const [lifts] = useState([
+    { name: 'bench', weight: 135, date: '1/26', id: 1 },
+    { name: 'squat', weight: 225, date: '1/30', id: 2 },
+    { name: 'deadlift', weight: 375, date: '2/17', id: 3 },
+  ])
+  
   return (
     <StyledContainer>
       <StyledSection>
         <StyledLeft>
           <LongBlock>
-            <StyledPicture> Hello </StyledPicture>
-            <StyledInfoP> Home </StyledInfoP>
+            
           </LongBlock>
           <StyledBottom>
             <StyledUpload></StyledUpload>
             <StyledInfo>
               <StyledInfoTitle> Title </StyledInfoTitle>
+              <LiftList lifts={lifts}/>
             </StyledInfo>
           </StyledBottom>          
         </StyledLeft>
