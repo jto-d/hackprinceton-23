@@ -15,7 +15,7 @@ const StyledDiv = styled.div`
 const Navbar = () => {
   return (
     <StyledHeader>
-      <StyledDiv> logo </StyledDiv>
+      <StyledDiv> Logo </StyledDiv>
       <StyledDiv> Name </StyledDiv>
     </StyledHeader>
   );
