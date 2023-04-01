@@ -224,7 +224,7 @@ const Dashboard = () => {
           <LongBlock>
             <LongBlockTitle> How to Use </LongBlockTitle>
             <StyledInstructions> Step 1: Upload a video of your exercise </StyledInstructions>
-            <StyledInstructions> Step 2: Wait for our AI to generate a FormScore&#174; </StyledInstructions>
+            <StyledInstructions> Step 2: Wait for our AI to generate a Form Score </StyledInstructions>
             <StyledInstructions> Step 3: Use our suggestions to improve your form and exercise more effectively </StyledInstructions>
           </LongBlock>
           <StyledBottom>

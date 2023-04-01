@@ -1,6 +1,6 @@
 
 import styled from 'styled-components';
-import { Home, Dashboard, Login, Register, Video } from './pages'
+import { Home, Dashboard, Login, Register, Video, Loading } from './pages'
 import Navbar from './components/Navbar';
 
 import { Route, Routes } from 'react-router-dom'
@@ -19,6 +19,8 @@ function App() {
         <Route path="/video/" element={<Video />} />
 
         <Route path="/dashboard/" element={<Dashboard />} /> 
+
+        <Route path="/loading/" element={<Loading />} /> 
 
       </Routes>
     </div>
