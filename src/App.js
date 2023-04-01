@@ -2,25 +2,29 @@
 import styled from 'styled-components';
 import { Home, Dashboard, Login, Register, Video } from './pages'
 import Navbar from './components/Navbar';
+import { Provider } from 'react-redux'
+import { store } from './store/store'
 
 import { Route, Routes } from 'react-router-dom'
 
 function App() {
   return (   
     <div> 
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
+      {/* <Navbar /> */}
+      <Provider store={store}>
+        <Routes>
+          <Route path="/" element={<Home />} />
 
-        <Route path="/register/" element={<Register />} />
+          <Route path="/register" element={<Register />} />
 
-        <Route path="/login/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
 
-        <Route path="/video/" element={<Video />} />
+          <Route path="/video" element={<Video />} />
 
-        <Route path="/dashboard/" element={<Dashboard />} /> 
+          <Route path="/dashboard" element={<Dashboard />} /> 
 
-      </Routes>
+        </Routes>
+      </Provider>
     </div>
   );
 }

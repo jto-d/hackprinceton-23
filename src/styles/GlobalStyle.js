@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
     font-family: var(--font-nunito);
-    background-color: #05192b;
+    background-color: #011424;
     color: white;
   }
 

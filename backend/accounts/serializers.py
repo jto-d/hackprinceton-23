@@ -4,7 +4,6 @@ from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 
 from .models import CustomUser
-from .utils import Util
 
 
 """
