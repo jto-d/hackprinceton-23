@@ -44,6 +44,7 @@ const LongBlock = styled.div`
   height: 60vh;
   border-radius: 20px;
   background-color: #2b3445;
+  gap: 10px;
 `
 
 const StyledUpload = styled.button`
@@ -68,7 +69,7 @@ const StyledInfoP = styled.p`
   font-size: 22px;
   z-index: 100;
   background-color: rgba(0, 0, 0, 1);
-  margin: 20px;
+  margin: 20px 20px 20px 0px;
   height: auto;
   width: 70%;
   justify-content: center;
@@ -81,8 +82,24 @@ const StyledPicture = styled.a`
   height: auto;
   background-color: black;
   border-radius: 20px;
-  margin: auto 20px;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 20px;
   justify-content: center;
+`
+
+const StyledInfoTitle = styled.div`
+  font-size: 20; 
+  font-weight: 600;
+
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  background-color: rgba(0,0,0,1);
+  height: auto;
+  justify-content: left;
+  margin-left: 12px;
+  margin-top: 12px;
 `
 
 const Home = () => {
@@ -96,7 +113,9 @@ const Home = () => {
           </LongBlock>
           <StyledBottom>
             <StyledUpload></StyledUpload>
-            <StyledInfo></StyledInfo>
+            <StyledInfo>
+              <StyledInfoTitle> Title </StyledInfoTitle>
+            </StyledInfo>
           </StyledBottom>          
         </StyledLeft>
         <VertBlock></VertBlock>
