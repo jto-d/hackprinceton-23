@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import statistics
 
-video = cv2.VideoCapture("demo_videos/jacqueredgood.mp4")
+video = cv2.VideoCapture("demo_videos/caplebadred.mp4")
 
 lower_color1 = np.array([0, 250, 50])
 upper_color1 = np.array([10, 255, 255])
@@ -160,13 +160,13 @@ cv2.destroyAllWindows()
 
 # now we calculate deviations from "proportional points" ! :)))))
 
-n = 9
+n = 15
 
-step_descend_ideal = len(points_descent) / 9
-step_descend_tracked = len(tracked_descent_points) / 9
+step_descend_ideal = len(points_descent) / n
+step_descend_tracked = len(tracked_descent_points) / n
 
-step_ascend_ideal = len(points_ascent) / 9
-step_ascend_tracked = len(tracked_ascent_points) / 9
+step_ascend_ideal = len(points_ascent) / n
+step_ascend_tracked = len(tracked_ascent_points) / n
 
 descend_differences = []
 ascend_differences = []
