@@ -4,6 +4,7 @@ import CircleLoader from "react-spinners/CircleLoader";
 import { Superscript } from "@mui/icons-material";
 import Typewriter from "typewriter-effect";
 import FadeIn from "./FadeIn";
+<<<<<<< HEAD
 import { useGetScoreQuery } from "../utils/userAuthApi";
 import SouthIcon from '@mui/icons-material/South';
 
@@ -11,6 +12,9 @@ import { Player } from 'video-react';
 
 import jackVid from '../assets/output_videos/output_jack.mp4'
 import capleVid from '../assets/output_videos/output_caple.mp4'
+=======
+import SouthIcon from '@mui/icons-material/South';
+>>>>>>> f59057e100e77eb989e83a36dc90795655b5a4f4
 
 const StyledContainer = styled.div`
   display: flex;
@@ -71,20 +75,9 @@ const ScoreIcon = styled.div`
   width: 250px;
   border: 20px solid #0058ff;
   border-radius: 150px;
-  margin-bottom: 5px;
+  margin-bottom: 120px;
   justify-content: center;
   align-items: center;
-`
-
-const StyledSummary = styled.div`
-  display: flex;
-  background-color: transparent;
-  height: 20%;
-  width: 375px;
-  font-size: 20px;
-  justify-content: center;
-  align-items: center;
-  text-align: center
 `
 
 const HorizontalBlock = styled.div`
@@ -184,6 +177,7 @@ const Score = () => {
             </HorizontalBlock>
             <VertBlock>
                 <ResultTitle> Bench Press </ResultTitle>
+<<<<<<< HEAD
                 <ScoreIcon> {data.score} </ScoreIcon>
                 <SouthIcon style={{backgroundColor: 'transparent', height: 50, width: 50, marginTop: 200}}></SouthIcon>
             </VertBlock>
@@ -194,6 +188,13 @@ const Score = () => {
               <source src={video} type="video/mp4" />
             </video>
           </StyledContainer>
+=======
+                <ScoreIcon> 90 </ScoreIcon>
+                <SouthIcon style={{backgroundColor: 'transparent', height: 50, width: 50}}></SouthIcon>
+            </VertBlock>
+          </StyledContainer>
+          <StyledContainer></StyledContainer>
+>>>>>>> f59057e100e77eb989e83a36dc90795655b5a4f4
         </FadeIn>
 
       
