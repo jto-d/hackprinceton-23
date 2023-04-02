@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-video = cv2.VideoCapture("videos/capleredbadgp.mp4")
+video = cv2.VideoCapture("videos/jacqueredgood.mp4")
 
 ret, frame = video.read()
 

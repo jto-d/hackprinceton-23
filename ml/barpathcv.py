@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import statistics
 
-video = cv2.VideoCapture("videos/jacqueredgood.mp4")
+video = cv2.VideoCapture("videos/billygood2.mp4")
 
 lower_color1 = np.array([0, 250, 50])
 upper_color1 = np.array([10, 255, 255])
@@ -22,6 +22,13 @@ first_center_x = None
 first_center_y = None
 numframes = 0
 contour_coords = []
+
+output_filename = "output_videos/output_video.mp4"
+fps = int(video.get(cv2.CAP_PROP_FPS))
+size = (width, height)
+fourcc = cv2.VideoWriter_fourcc(*"mp4v")  # Codec for mp4 format
+
+out_video = cv2.VideoWriter(output_filename, fourcc, fps, size)
 
 while True:
 
@@ -92,36 +99,21 @@ while True:
     # ctestingarray = np.array(contour_coords, dtype=np.int32).reshape(-1, 1, 2)
     # cv2.polylines(ctesting, [ctestingarray], isClosed=False, color=(255, 255, 255), thickness=30)
 
-    
-    points_descent = [
-    (first_center_x, first_center_y),
-    (first_center_x+14, first_center_y+17),
-    (first_center_x+27, first_center_y+41),
-    (first_center_x+46, first_center_y+70),
-    (first_center_x+65, first_center_y+103),
-    (first_center_x+86, first_center_y+147),
-    (first_center_x+98, first_center_y+201),
-    (first_center_x+112, first_center_y+254),
-    (first_center_x+129, first_center_y+331), # bottom pivot
-    ]
+    file = open('differences.txt', 'r')
+    lines = file.readlines()
+    file.close()
 
-    points_ascent = [
-    (first_center_x+129, first_center_y+331), # bottom pivot
-    (first_center_x+101, first_center_y+322),
-    (first_center_x+72, first_center_y+292),
-    (first_center_x+40, first_center_y+252),
-    (first_center_x+29, first_center_y+221),
-    (first_center_x+15, first_center_y+191),
-    (first_center_x+6, first_center_y+149),
-    (first_center_x-5, first_center_y+116),
-    (first_center_x-7, first_center_y+94),
-    (first_center_x-9, first_center_y+75),
-    (first_center_x-10, first_center_y+57),
-    (first_center_x-12, first_center_y+37),
-    (first_center_x-12, first_center_y+10),
-    (first_center_x-9, first_center_y+3),
-    (first_center_x-4, first_center_y-5),
-    ]
+    points = [(first_center_x + 30, first_center_y)]
+
+    for line in lines:
+        points.append((points[-1][0] + int(line.split(',')[0]),
+                        points[-1][1] + int(line.split(',')[1])))
+
+    
+    points_descent = points[:40]
+    points_ascent = points[40:]
+
+    print (points_descent)
 
     # Creating images to store ideal path drawing
     ideal_path_descent = np.zeros((height, width, 3), dtype=np.uint8)
@@ -149,12 +141,14 @@ while True:
 
     # cv2.circle(traced_frame, (first_center_x+129, first_center_y+331), radius=15, color=(255,0,0), thickness=10)
 
-    cv2.imshow("Bench Press Bar Path", traced_frame_4)    
+    out_video.write(traced_frame_4)
+    cv2.imshow("Bench Press Bar Path", traced_frame_4)  
     
     key = cv2.waitKey(30) & 0xFF
     if key == ord("q"):
         break
 video.release()
+out_video.release()
 cv2.destroyAllWindows()
 
 print("number of frames = " + str(numframes))
@@ -220,4 +214,3 @@ print("Descent Mean X-Deviation = " + str(descent_xmean))
 print("Printing Ascent Differences")
 print(ascend_differences)
 print("Ascent Mean X-Deviation = " + str(ascent_xmean))
-
