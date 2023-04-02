@@ -18,6 +18,7 @@ const StyledButton = styled.button`
     align-items: center;
     padding: 2rem 4rem;
     width: 15%;
+    margin-right: auto;
 
     text-decoration: none;
     border: none;

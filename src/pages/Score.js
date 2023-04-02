@@ -4,6 +4,13 @@ import CircleLoader from "react-spinners/CircleLoader";
 import { Superscript } from "@mui/icons-material";
 import Typewriter from "typewriter-effect";
 import FadeIn from "./FadeIn";
+import { useGetScoreQuery } from "../utils/userAuthApi";
+import SouthIcon from '@mui/icons-material/South';
+
+import { Player } from 'video-react';
+
+import jackVid from '../assets/output_videos/output_jack.mp4'
+import capleVid from '../assets/output_videos/output_caple.mp4'
 
 const StyledContainer = styled.div`
   display: flex;
@@ -57,7 +64,7 @@ const ResultTitle = styled.div`
 
 const ScoreIcon = styled.div`
   display: flex;
-  font-size: 120px;
+  font-size: 100px;
   font-weight: 600;
   background-color: transparent;
   height: 250px;
@@ -121,20 +128,25 @@ const StyledText = styled.div`
 `
 
 const Score = () => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  const { data, isSuccess } = useGetScoreQuery()
+
+  /* useEffect(() => {
+    if (data.score != null) {
+      console.log(data)
+    }
+  }) */
 
   useEffect(() => {
-    setLoading(true)
     setTimeout(() => {
       setLoading(false)
     }, 6000);
   }, []);
-  
-  
-  return (
-    <div>
-      {loading ? (
-        <StyledWrapper>
+
+  if (loading) {
+    return (
+      <StyledWrapper>
           <StyledLoader>
             <CircleLoader
             color={'#FFFFFF'}
@@ -153,9 +165,18 @@ const Score = () => {
             />
           </StyledText>
         </StyledWrapper>
+    )
+  } else {
+    console.log(data)
 
-      ) : (
-
+    let video = null
+    if (data.name === "jack") {
+      video = jackVid
+    } else {
+      video = capleVid
+    }
+    return (
+    <div>
         <FadeIn>
           <StyledContainer>
             <HorizontalBlock>
@@ -163,15 +184,25 @@ const Score = () => {
             </HorizontalBlock>
             <VertBlock>
                 <ResultTitle> Bench Press </ResultTitle>
-                <ScoreIcon> 90 </ScoreIcon>
-                <StyledSummary> Your Form Score has improved by an average of 10 points since 3/4/23 </StyledSummary>
+                <ScoreIcon> {data.score} </ScoreIcon>
+                <SouthIcon style={{backgroundColor: 'transparent', height: 50, width: 50, marginTop: 200}}></SouthIcon>
             </VertBlock>
+          </StyledContainer>
+          <StyledContainer>
+            <video playsInline poster="../assets/thumbnail.png" autoPlay 
+            width={300} height={1000} controls loop muted >
+              <source src={video} type="video/mp4" />
+            </video>
           </StyledContainer>
         </FadeIn>
 
-      )}
+      
     </div>
   );
+  }
+  
+  
+  
 }
  
 export default Score;

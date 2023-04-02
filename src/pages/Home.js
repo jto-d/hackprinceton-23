@@ -119,7 +119,6 @@ const Home = () => {
             
         </StyledHeroText>
         <StyledPhoto>
-            <StyledCircle/> 
             <StyledImg/>
         </StyledPhoto>
         

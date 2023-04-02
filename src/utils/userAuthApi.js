@@ -53,8 +53,20 @@ export const userAuthApi = createApi({
                 }
             }
         }),
+        getScore: builder.query({
+            query: () => {
+                return {
+                    url: 'score/',
+                    method: 'GET',
+                    headers: {
+
+                    }
+                }
+            }
+        })
     })
 
 })
 
-export const { useSignupUserMutation, useLoginUserMutation, useGetLoggedUserQuery, useSendVideoMutation } = userAuthApi
+export const { useSignupUserMutation, useLoginUserMutation, useGetLoggedUserQuery, 
+        useSendVideoMutation, useGetScoreQuery } = userAuthApi

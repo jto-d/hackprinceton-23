@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import authenticate
 
+import os
 
 from .models import CustomUser
 from .renderers import UserRenderer
@@ -77,23 +78,41 @@ class UserProfileView(APIView):
         name = f.read()
         print(name)
 
+        f = open('../ml/score.txt', 'r')
+        prev_score = f.read()
+
         # return Response({user.first_name, user.previous_ratings}, status=status.HTTP_200_OK)
 
 
         serializer = UserProfileSerializer(request.user)
         print("successful get request")
 
-        return Response({"name": name}, status=status.HTTP_200_OK)
+        return Response({"name": name, "score": prev_score}, status=status.HTTP_200_OK)
 
 class UserVideoView(APIView):
     renderer_classes = [UserRenderer]
 
     def post(self, request, format=None):
-        f = open('../ml/url.txt', 'w')
+        filename = request.data['file'].split('.')[0]
+
+        f = open('user.txt', 'w')
         
-        f.write(request.data['file'])
+        f.write(filename)
         f.close()
         
 
         return Response({"data": "true"}, status=status.HTTP_200_OK)
 
+class UserScoreView(APIView):
+    renderer_classes = [UserRenderer]
+
+    def get(self, request, format=None):
+
+        f = open('user.txt', 'r')
+        name = f.read()
+
+        fi = open(os.path.join(name, 'score.txt'), 'r')
+        score = fi.read()
+        print(score)
+
+        return Response({"score": score[:4], "name": name}, status=status.HTTP_200_OK)

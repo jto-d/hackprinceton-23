@@ -18,7 +18,7 @@ const StyledSection = styled.div`
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 88vh;
+  height: 100vh;
   margin-left: 100px;
   margin-right: 40px;
 
@@ -33,6 +33,10 @@ const StyledBottom = styled.div`
   width: 100%;
   gap: 20px;
   margin-right: 0;
+
+  a {
+    text-decoration: none;
+  }
 `
 
 const StyledLeft = styled.div`
@@ -266,8 +270,8 @@ const Dashboard = () => {
           </StyledBottom>          
         </StyledLeft>
         <VertBlock>
-          <ResultTitle> Insert Lift </ResultTitle>
-          <ScoreIcon> 90 </ScoreIcon>
+          <ResultTitle> Bench Press </ResultTitle>
+          <ScoreIcon> {data.score} </ScoreIcon>
           <StyledSummary> Your average FormScore is in the top 1%</StyledSummary>
         </VertBlock>
       </StyledSection>
