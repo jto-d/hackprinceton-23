@@ -3,6 +3,7 @@ import styled from "styled-components";
 import CircleLoader from "react-spinners/CircleLoader";
 import { Superscript } from "@mui/icons-material";
 import Typewriter from "typewriter-effect";
+import FadeIn from "./FadeIn";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -155,16 +156,18 @@ const Score = () => {
 
       ) : (
 
-        <StyledContainer>
-          <HorizontalBlock>
-            <a href='/dashboard'> <StyledButton> Back to Dashboard</StyledButton> </a>
-          </HorizontalBlock>
-          <VertBlock>
-              <ResultTitle> Bench Press </ResultTitle>
-              <ScoreIcon> 90 </ScoreIcon>
-              <StyledSummary> Your Form Score has improved by an average of 10 points since 3/4/23 </StyledSummary>
-          </VertBlock>
-        </StyledContainer>
+        <FadeIn>
+          <StyledContainer>
+            <HorizontalBlock>
+              <a href='/dashboard'> <StyledButton> Back to Dashboard</StyledButton> </a>
+            </HorizontalBlock>
+            <VertBlock>
+                <ResultTitle> Bench Press </ResultTitle>
+                <ScoreIcon> 90 </ScoreIcon>
+                <StyledSummary> Your Form Score has improved by an average of 10 points since 3/4/23 </StyledSummary>
+            </VertBlock>
+          </StyledContainer>
+        </FadeIn>
 
       )}
     </div>
