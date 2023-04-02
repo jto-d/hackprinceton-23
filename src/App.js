@@ -1,6 +1,6 @@
 
 import styled from 'styled-components';
-import { Home, Dashboard, Login, Register, Video, Loading, Score } from './pages'
+import { Home, Dashboard, Login, Register, Video, Score } from './pages'
 import Navbar from './components/Navbar';
 import { Provider } from 'react-redux'
 import { store } from './store/store'
@@ -22,8 +22,6 @@ function App() {
           <Route path="/video" element={<Video />} />
 
           <Route path="/dashboard" element={<Dashboard />} /> 
-
-          <Route path="/loading/" element={<Loading />} /> 
 
           <Route path="/score/" element={<Score />} /> 
 
