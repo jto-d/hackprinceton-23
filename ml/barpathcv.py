@@ -1,7 +1,8 @@
 import cv2
 import numpy as np
+import statistics
 
-video = cv2.VideoCapture("videos/capleredbadgp.mp4")
+video = cv2.VideoCapture("videos/jacqueredgood.mp4")
 
 lower_color1 = np.array([0, 250, 50])
 upper_color1 = np.array([10, 255, 255])
@@ -164,3 +165,59 @@ print("Lowest = " + str(lowest))
 print("")
 print("number of ascent points = " + str(len(tracked_ascent_points)))
 print(tracked_ascent_points)
+
+# now we calculate deviations from "proportional points" ! :)))))
+
+n = 9
+
+step_descend_ideal = len(points_descent) / 9
+step_descend_tracked = len(tracked_descent_points) / 9
+
+step_ascend_ideal = len(points_ascent) / 9
+step_ascend_tracked = len(tracked_ascent_points) / 9
+
+descend_differences = []
+ascend_differences = []
+
+descent_ideal_indices = []
+descent_tracked_indices = []
+
+#populate descent deviations
+
+for i in range(n):
+    index1 = int(i * step_descend_ideal)
+    index2 = int(i * step_descend_tracked)
+    descent_ideal_indices.append(index1)
+    descent_tracked_indices.append(index2)
+
+    diff = abs(points_descent[index1][0] - tracked_descent_points[index2][0])
+
+    descend_differences.append(diff)
+
+#populate ascent deviations
+
+for i in range(n):
+    index1 = int(i * step_ascend_ideal)
+    index2 = int(i * step_ascend_tracked)
+
+    diff = abs(points_ascent[index1][0] - tracked_ascent_points[index2][0])
+
+    ascend_differences.append(diff)
+
+descent_xmean = statistics.mean(descend_differences)
+ascent_xmean = statistics.mean(ascend_differences)
+
+print("Ideal descent indices")
+print(descent_ideal_indices)
+print("Tracked descent indices")
+print(descent_tracked_indices)
+
+print("Printing Descent Differences")
+print(descend_differences)
+print("Descent Mean X-Deviation = " + str(descent_xmean))
+
+
+print("Printing Ascent Differences")
+print(ascend_differences)
+print("Ascent Mean X-Deviation = " + str(ascent_xmean))
+
