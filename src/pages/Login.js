@@ -1,5 +1,6 @@
 import React, {useState } from 'react'
 import styled, { css } from 'styled-components'
+import { useLoginUserMutation } from '../utils/userAuthApi'
 
 
 const StyledContainer = styled.div`
@@ -9,6 +10,8 @@ const StyledContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+
 
 
   h1 {
@@ -22,15 +25,24 @@ const StyledContainer = styled.div`
     width: 70%;
     line-height: 1.3rem;
   }
+
+  a {
+    text-decoration: none;
+    margin: 0;
+    width: 100px;
+    padding: 0;
+  }
 `
 
 const StyledButton = styled.button`
   margin-top: 2rem;
+  text-decoration: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1.8rem 4.5rem;
+    padding: 1.3rem 4.5rem;
     width: 15%;
+    white-space: nowrap;
 
     text-decoration: none;
     border: none;
@@ -41,6 +53,8 @@ const StyledButton = styled.button`
     letter-spacing: 0.05em;
     color: #DAE9FF;
     cursor: pointer;
+
+
     border-radius: 40px;
 
     &:hover {
@@ -50,6 +64,7 @@ const StyledButton = styled.button`
     ${props => props.invert && css`
         color: #DAE9FF;
         background-color: #2B3445;
+
 
         &:hover {
             background-color: #191f29;
@@ -80,6 +95,7 @@ const FormInput = styled.div`
     background-color: #2B3445;
     border: solid 1px #8888;
     border-radius: 15px;
+
     padding: 7px;
     padding-left: 20px;
     font-weight: 300;
@@ -95,7 +111,7 @@ const StyledButtons = styled.div`
     display: flex;
     flex-direction: row;
     gap: 40px;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
 `
 
 
@@ -104,7 +120,29 @@ const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  const [loginUser] = useLoginUserMutation()
 
+  const clearTextInput = () => {
+    setEmail('')
+    setPassword('')
+  }
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault()
+    const formData = {email, password}
+
+    console.log(formData)
+    const response = await loginUser(formData)
+
+    console.log(response)
+
+    if(response.data) {
+      clearTextInput()
+      window.open("/dashboard", "_self")
+    } else {
+      
+    }
+  }
   return (
     
     <StyledContainer>
@@ -130,8 +168,8 @@ const Login = () => {
 
       </StyledForm>
       <StyledButtons>
-          <StyledButton type="submit"/>
-          <StyledButton invert />
+          <StyledButton type="submit" onClick={handleFormSubmit}>Log In</StyledButton>
+          <a href="http://localhost:3000/" > <StyledButton invert >Home</StyledButton> </a>
       </StyledButtons>
 
     </StyledContainer>
