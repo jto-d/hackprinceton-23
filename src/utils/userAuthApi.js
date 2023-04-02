@@ -45,4 +45,4 @@ export const userAuthApi = createApi({
 
 })
 
-export const { useSignupUserMutation, useLoginMutation, useGetUserQuery } = userAuthApi
+export const { useSignupUserMutation, useLoginUserMutation, useGetUserQuery } = userAuthApi
