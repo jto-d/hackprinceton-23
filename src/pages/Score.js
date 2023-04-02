@@ -4,6 +4,7 @@ import CircleLoader from "react-spinners/CircleLoader";
 import { Superscript } from "@mui/icons-material";
 import Typewriter from "typewriter-effect";
 import FadeIn from "./FadeIn";
+import SouthIcon from '@mui/icons-material/South';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -64,20 +65,9 @@ const ScoreIcon = styled.div`
   width: 250px;
   border: 20px solid #0058ff;
   border-radius: 150px;
-  margin-bottom: 5px;
+  margin-bottom: 120px;
   justify-content: center;
   align-items: center;
-`
-
-const StyledSummary = styled.div`
-  display: flex;
-  background-color: transparent;
-  height: 20%;
-  width: 375px;
-  font-size: 20px;
-  justify-content: center;
-  align-items: center;
-  text-align: center
 `
 
 const HorizontalBlock = styled.div`
@@ -164,9 +154,10 @@ const Score = () => {
             <VertBlock>
                 <ResultTitle> Bench Press </ResultTitle>
                 <ScoreIcon> 90 </ScoreIcon>
-                <StyledSummary> Your Form Score has improved by an average of 10 points since 3/4/23 </StyledSummary>
+                <SouthIcon style={{backgroundColor: 'transparent', height: 50, width: 50}}></SouthIcon>
             </VertBlock>
           </StyledContainer>
+          <StyledContainer></StyledContainer>
         </FadeIn>
 
       )}
