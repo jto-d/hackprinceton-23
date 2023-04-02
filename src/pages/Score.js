@@ -82,13 +82,17 @@ const HorizontalBlock = styled.div`
   align-items: left;
   width: 100%;
   margin-left: 120px;
+
+  a {
+    text-decoration: none;
+  }
 `
 
 const Score = () => {
   return (
     <StyledContainer>
       <HorizontalBlock>
-        <StyledButton href='/dashboard'> Back to Dashboard</StyledButton>
+        <a href='/dashboard'> <StyledButton> Back to Dashboard</StyledButton> </a>
       </HorizontalBlock>
       <VertBlock>
           <ResultTitle> Bench Press </ResultTitle>
