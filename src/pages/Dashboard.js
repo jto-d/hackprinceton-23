@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import LiftList from "../components/LiftList";
 import UploadIcon from '@mui/icons-material/Upload';
+import FadeIn from "./FadeIn";
 
 const transparent = `rgba(0, 0, 0, 0)`;
 
@@ -215,36 +216,38 @@ const Dashboard = () => {
   ])
   
   return (
-    <StyledContainer>
-      <StyledSection>
-        <DashboardTitle> Caple's Dashboard </DashboardTitle>
-      </StyledSection>
-      <StyledSection>
-        <StyledLeft>
-          <LongBlock>
-            <LongBlockTitle> How to Use </LongBlockTitle>
-            <StyledInstructions> Step 1: Upload a video of your exercise </StyledInstructions>
-            <StyledInstructions> Step 2: Wait for our AI to generate a Form Score </StyledInstructions>
-            <StyledInstructions> Step 3: Use our suggestions to improve your form and exercise more effectively </StyledInstructions>
-          </LongBlock>
-          <StyledBottom>
-            <StyledUpload>
-              <UploadIcon style={{backgroundColor: 'transparent', height: 100, width: 100}}></UploadIcon>
-              <StyledUploadTitle> Upload </StyledUploadTitle>
-            </StyledUpload>
-            <StyledInfo>
-              <StyledInfoTitle> Recent Uploads </StyledInfoTitle>
-              <LiftList lifts={lifts}/>
-            </StyledInfo>
-          </StyledBottom>          
-        </StyledLeft>
-        <VertBlock>
-          <ResultTitle> Insert Lift </ResultTitle>
-          <ScoreIcon> 90 </ScoreIcon>
-          <StyledSummary> Your average FormScore is in the top 1%</StyledSummary>
-        </VertBlock>
-      </StyledSection>
-    </StyledContainer>
+    <FadeIn>
+      <StyledContainer>
+        <StyledSection>
+          <DashboardTitle> Caple's Dashboard </DashboardTitle>
+        </StyledSection>
+        <StyledSection>
+          <StyledLeft>
+            <LongBlock>
+              <LongBlockTitle> How to Use </LongBlockTitle>
+              <StyledInstructions> Step 1: Upload a video of your exercise </StyledInstructions>
+              <StyledInstructions> Step 2: Wait for our AI to generate a Form Score </StyledInstructions>
+              <StyledInstructions> Step 3: Use our suggestions to improve your form and exercise more effectively </StyledInstructions>
+            </LongBlock>
+            <StyledBottom>
+              <StyledUpload>
+                <UploadIcon style={{backgroundColor: 'transparent', height: 100, width: 100}}></UploadIcon>
+                <StyledUploadTitle> Upload </StyledUploadTitle>
+              </StyledUpload>
+              <StyledInfo>
+                <StyledInfoTitle> Recent Uploads </StyledInfoTitle>
+                <LiftList lifts={lifts}/>
+              </StyledInfo>
+            </StyledBottom>          
+          </StyledLeft>
+          <VertBlock>
+            <ResultTitle> Insert Lift </ResultTitle>
+            <ScoreIcon> 90 </ScoreIcon>
+            <StyledSummary> Your average FormScore is in the top 1%</StyledSummary>
+          </VertBlock>
+        </StyledSection>
+      </StyledContainer>
+    </FadeIn>
   );
 }
  
