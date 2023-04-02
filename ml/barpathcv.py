@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import statistics
 
-video = cv2.VideoCapture("videos/billygood2.mp4")
+video = cv2.VideoCapture("demo_videos/caplebadred.mp4")
 
 lower_color1 = np.array([0, 250, 50])
 upper_color1 = np.array([10, 255, 255])
@@ -59,7 +59,7 @@ while True:
             (x, y, w, h) = cv2.boundingRect(contour)
             center_x = int(x + w / 2)
             center_y = int(y + h / 2)
-            cv2.circle(bar_path, (center_x, center_y), radius=10, color=(0, 255, 0), thickness=-1)
+            cv2.circle(bar_path, (center_x, center_y), radius=10, color=(0, 0, 0), thickness=-1)
 
             
             contour_x = center_x
@@ -91,7 +91,7 @@ while True:
     tracked_ascent_image = np.zeros((height, width, 3), dtype=np.uint8)
 
     cv2.polylines(tracked_descent_image, [tracked_descent_points_array], isClosed=False, color = (255, 255, 255, 255), thickness=15)
-    cv2.polylines(tracked_ascent_image, [tracked_ascent_points_array], isClosed=False, color = (255, 255, 0, 255), thickness=15)
+    cv2.polylines(tracked_ascent_image, [tracked_ascent_points_array], isClosed=False, color = (255, 255, 255, 255), thickness=15)
 
     
 
@@ -113,8 +113,6 @@ while True:
     points_descent = points[:40]
     points_ascent = points[40:]
 
-    print (points_descent)
-
     # Creating images to store ideal path drawing
     ideal_path_descent = np.zeros((height, width, 3), dtype=np.uint8)
     ideal_path_ascent = np.zeros((height, width, 3), dtype=np.uint8)
@@ -126,9 +124,9 @@ while True:
     
 
     # Draw the curve on the ideal_path image using cv2.polylines
-    cv2.polylines(ideal_path_descent, [points_array_descent], isClosed=False, color=(0 ,0 ,255), thickness=10)
+    cv2.polylines(ideal_path_descent, [points_array_descent], isClosed=False, color=(0, 255, 0), thickness=10)
 
-    cv2.polylines(ideal_path_ascent, [points_array_ascent], isClosed=False, color=(255, 0, 0), thickness=10)
+    cv2.polylines(ideal_path_ascent, [points_array_ascent], isClosed=False, color=(0, 255, 0), thickness=10)
 
     cumulative_frame = cv2.addWeighted(frame, 1, bar_path, 1, 0)
 
@@ -151,24 +149,24 @@ video.release()
 out_video.release()
 cv2.destroyAllWindows()
 
-print("number of frames = " + str(numframes))
-print("number of descent points = " + str(len(tracked_descent_points)))
-print(tracked_descent_points)
-print("")
-print("Lowest = " + str(lowest))
-print("")
-print("number of ascent points = " + str(len(tracked_ascent_points)))
-print(tracked_ascent_points)
+# print("number of frames = " + str(numframes))
+# print("number of descent points = " + str(len(tracked_descent_points)))
+# print(tracked_descent_points)
+# print("")
+# print("Lowest = " + str(lowest))
+# print("")
+# print("number of ascent points = " + str(len(tracked_ascent_points)))
+# print(tracked_ascent_points)
 
 # now we calculate deviations from "proportional points" ! :)))))
 
-n = 9
+n = 15
 
-step_descend_ideal = len(points_descent) / 9
-step_descend_tracked = len(tracked_descent_points) / 9
+step_descend_ideal = len(points_descent) / n
+step_descend_tracked = len(tracked_descent_points) / n
 
-step_ascend_ideal = len(points_ascent) / 9
-step_ascend_tracked = len(tracked_ascent_points) / 9
+step_ascend_ideal = len(points_ascent) / n
+step_ascend_tracked = len(tracked_ascent_points) / n
 
 descend_differences = []
 ascend_differences = []
@@ -201,16 +199,28 @@ for i in range(n):
 descent_xmean = statistics.mean(descend_differences)
 ascent_xmean = statistics.mean(ascend_differences)
 
-print("Ideal descent indices")
-print(descent_ideal_indices)
-print("Tracked descent indices")
-print(descent_tracked_indices)
+# print("Ideal descent indices")
+# print(descent_ideal_indices)
+# print("Tracked descent indices")
+# print(descent_tracked_indices)
 
-print("Printing Descent Differences")
-print(descend_differences)
+# print("Printing Descent Differences")
+# print(descend_differences)
 print("Descent Mean X-Deviation = " + str(descent_xmean))
 
 
-print("Printing Ascent Differences")
-print(ascend_differences)
+# print("Printing Ascent Differences")
+# print(ascend_differences)
 print("Ascent Mean X-Deviation = " + str(ascent_xmean))
+
+aggregated_deviation = statistics.mean((descent_xmean, ascent_xmean))
+
+final_score = 0
+
+if aggregated_deviation > 130:
+    final_score = 0
+else:
+    final_score = (130 - aggregated_deviation)
+
+print("Aggregated Mean Deviation = " + str(aggregated_deviation))
+print("Final Score = " + str(final_score))
