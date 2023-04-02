@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import styled from "styled-components";
-import BounceLoader from "react-spinners/BounceLoader";
+import CircleLoader from "react-spinners/CircleLoader";
 import { Superscript } from "@mui/icons-material";
 import Typewriter from "typewriter-effect";
 
@@ -20,14 +20,18 @@ const StyledLoader = styled.div`
   
   margin-top: 120px;
   margin-bottom: 50px;
+  
 `
 
-const StyledText = styled.p`
+const StyledText = styled.div`
   display: flex;
-  color: #0058ff;
   font-size: 24px;
   font-weight: 200;
   justify-content: center;
+
+  div {
+    color: #0058ff;
+  }
 `
 
 const Loading = () => {
@@ -40,27 +44,24 @@ const Loading = () => {
   return (
     <StyledWrapper>
       <StyledLoader>
-      <BounceLoader
-        color={'#0058ff'}
+        <CircleLoader
+        color={'#FFFFFF'}
         loading={loading}
         size={175}
-      />
-    </StyledLoader>
+        />
+      </StyledLoader>
 
-    <StyledText>
-      <Typewriter
-  
-       onInit={(typewriter)=> {
-  
-       typewriter
-        
-       .typeString("Calculating your Form Score...")
-         
-       .pauseFor(1000)
-       .start();
-       }}
-       />
-    </StyledText>
+      <StyledText>
+        <Typewriter
+          onInit={(typewriter)=> {
+            typewriter
+              .typeString("Calculating your Form Score...")
+                
+              .pauseFor(1000)
+              .start();
+          }}
+        />
+      </StyledText>
 
     {/* <StyledText> Calculating your FormScore<sup>&#174;</sup>... </StyledText> */}
     </StyledWrapper>
