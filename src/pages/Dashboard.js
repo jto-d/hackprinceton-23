@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import LiftList from "../components/LiftList";
 import UploadIcon from '@mui/icons-material/Upload';
-import FadeIn from "./FadeIn";
+
+import { useGetLoggedUserQuery } from "../utils/userAuthApi";
+import { useDispatch } from "react-redux";
 
 const transparent = `rgba(0, 0, 0, 0)`;
 
@@ -26,9 +28,11 @@ const StyledBottom = styled.div`
   margin-top: 20px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   height: 40vh;
   width: 100%;
   gap: 20px;
+  margin-right: 0;
 `
 
 const StyledLeft = styled.div`
@@ -63,8 +67,7 @@ const StyledUpload = styled.button`
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: 30%;
-  display: flex;
+  width: 250px;
   background-color: #0058ff;
   border: none;
   border-radius: 20px;
@@ -214,40 +217,61 @@ const Dashboard = () => {
     { name: 'Bicep Curl', weight: 60, date: '1/30', form: 76, id: 2 },
     { name: 'Bench Press', weight: 150, date: '2/17', form: 33, id: 3 },
   ])
+  const [isLoading, setLoading] = useState(true)
+  const dispatch = useDispatch()
+
+
+  const { data, isSuccess } = useGetLoggedUserQuery()
+  console.log(data)
+  useEffect(() => {
+    if (isSuccess) {
+        setLoading(false)
+    }
+  })
+
+  if (isLoading) {
+    return (
+      <div>
+        Currently loading
+      </div>
+    )
+  }
+
+
   
   return (
-    <FadeIn>
-      <StyledContainer>
-        <StyledSection>
-          <DashboardTitle> Caple's Dashboard </DashboardTitle>
-        </StyledSection>
-        <StyledSection>
-          <StyledLeft>
-            <LongBlock>
-              <LongBlockTitle> How to Use </LongBlockTitle>
-              <StyledInstructions> Step 1: Upload a video of your exercise </StyledInstructions>
-              <StyledInstructions> Step 2: Wait for our AI to generate a Form Score </StyledInstructions>
-              <StyledInstructions> Step 3: Use our suggestions to improve your form and exercise more effectively </StyledInstructions>
-            </LongBlock>
-            <StyledBottom>
+    <StyledContainer>
+      <StyledSection>
+        <DashboardTitle>{data.name}'s Dashboard </DashboardTitle>
+      </StyledSection>
+      <StyledSection>
+        <StyledLeft>
+          <LongBlock>
+            <LongBlockTitle> How to Use </LongBlockTitle>
+            <StyledInstructions> Step 1: Upload a video of your exercise </StyledInstructions>
+            <StyledInstructions> Step 2: Wait for our AI to generate a Form Score </StyledInstructions>
+            <StyledInstructions> Step 3: Use our suggestions to improve your form and exercise more effectively </StyledInstructions>
+          </LongBlock>
+          <StyledBottom>
+            <a href='/video'>
               <StyledUpload>
                 <UploadIcon style={{backgroundColor: 'transparent', height: 100, width: 100}}></UploadIcon>
                 <StyledUploadTitle> Upload </StyledUploadTitle>
               </StyledUpload>
-              <StyledInfo>
-                <StyledInfoTitle> Recent Uploads </StyledInfoTitle>
-                <LiftList lifts={lifts}/>
-              </StyledInfo>
-            </StyledBottom>          
-          </StyledLeft>
-          <VertBlock>
-            <ResultTitle> Insert Lift </ResultTitle>
-            <ScoreIcon> 90 </ScoreIcon>
-            <StyledSummary> Your average FormScore is in the top 1%</StyledSummary>
-          </VertBlock>
-        </StyledSection>
-      </StyledContainer>
-    </FadeIn>
+            </a>
+            <StyledInfo>
+              <StyledInfoTitle> Recent Uploads </StyledInfoTitle>
+              <LiftList lifts={lifts}/>
+            </StyledInfo>
+          </StyledBottom>          
+        </StyledLeft>
+        <VertBlock>
+          <ResultTitle> Insert Lift </ResultTitle>
+          <ScoreIcon> 90 </ScoreIcon>
+          <StyledSummary> Your average FormScore is in the top 1%</StyledSummary>
+        </VertBlock>
+      </StyledSection>
+    </StyledContainer>
   );
 }
  

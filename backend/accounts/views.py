@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import authenticate
 
+
 from .models import CustomUser
 from .renderers import UserRenderer
 from .serializers import UserSignupSerializer, UserLoginSerializer, UserProfileSerializer
@@ -28,6 +29,12 @@ class UserSignupView(APIView):
 
         # save the user to the database
         user = serializer.save()
+
+
+        f = open('name.txt', 'w')
+        f.write(request.data['first_name'])
+        f.close()
+
 
         # store the id of the logged in user
         request.session['logged_user_id'] = user.id
@@ -62,12 +69,31 @@ class UserLoginView(APIView):
 
 class UserProfileView(APIView):
     renderer_classes = [UserRenderer]
-    permission_classes = [IsAuthenticated]
 
     def get(self, request, format=None):
+
+
+        f = open('name.txt', 'r')
+        name = f.read()
+        print(name)
+
+        # return Response({user.first_name, user.previous_ratings}, status=status.HTTP_200_OK)
+
+
         serializer = UserProfileSerializer(request.user)
         print("successful get request")
 
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response({"name": name}, status=status.HTTP_200_OK)
 
+class UserVideoView(APIView):
+    renderer_classes = [UserRenderer]
+
+    def post(self, request, format=None):
+        f = open('../ml/url.txt', 'w')
+        
+        f.write(request.data['file'])
+        f.close()
+        
+
+        return Response({"data": "true"}, status=status.HTTP_200_OK)
 

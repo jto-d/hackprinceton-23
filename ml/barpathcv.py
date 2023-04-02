@@ -2,7 +2,9 @@ import cv2
 import numpy as np
 import statistics
 
-video = cv2.VideoCapture("demo_videos/caplebadred.mp4")
+
+
+video = cv2.VideoCapture("demo_videos/jacqueredgood.mp4")
 
 lower_color1 = np.array([0, 250, 50])
 upper_color1 = np.array([10, 255, 255])
@@ -23,7 +25,7 @@ first_center_y = None
 numframes = 0
 contour_coords = []
 
-output_filename = "output_videos/output_video.mp4"
+output_filename = "output_videos/output_jack.mp4"
 fps = int(video.get(cv2.CAP_PROP_FPS))
 size = (width, height)
 fourcc = cv2.VideoWriter_fourcc(*"mp4v")  # Codec for mp4 format
@@ -224,3 +226,7 @@ else:
 
 print("Aggregated Mean Deviation = " + str(aggregated_deviation))
 print("Final Score = " + str(final_score))
+
+f = open('jackscore.txt', 'w')
+f.write(str(final_score))
+f.close()

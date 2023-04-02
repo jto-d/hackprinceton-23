@@ -10,6 +10,8 @@ class CustomUser(AbstractUser):
 
     email = models.EmailField(('Email address'), unique=True)
 
+    previous_ratings = models.JSONField(('Form rating'), default=dict, blank=True)
+
     username = None
 
     USERNAME_FIELD = 'email'

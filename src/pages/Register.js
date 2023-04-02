@@ -155,10 +155,10 @@ const Register = () => {
 
     console.log(response)
 
-    // if (response.data) {
-    //   clearTextInput()
-    //   window.open("dashboard")
-    // }
+    if (response.data) {
+      clearTextInput()
+      window.open("dashboard")
+    }
   }
 
 

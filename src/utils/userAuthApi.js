@@ -31,12 +31,24 @@ export const userAuthApi = createApi({
             }
         }),
         getLoggedUser: builder.query({
-            query: (token) => {
+            query: () => {
                 return {
                     url: 'profile/',
                     method: 'GET',
                     headers: {
-                        'authorization': `Bearer ${token}`,
+                    
+                    }
+                }
+            }
+        }),
+        sendVideo: builder.mutation({
+            query: (filename) => {
+                return {
+                    url: 'videosubmission/',
+                    method: 'POST',
+                    body: filename,
+                    headers: {
+
                     }
                 }
             }
@@ -45,4 +57,4 @@ export const userAuthApi = createApi({
 
 })
 
-export const { useSignupUserMutation, useLoginUserMutation, useGetUserQuery } = userAuthApi
+export const { useSignupUserMutation, useLoginUserMutation, useGetLoggedUserQuery, useSendVideoMutation } = userAuthApi
