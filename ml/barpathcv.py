@@ -59,7 +59,7 @@ while True:
             (x, y, w, h) = cv2.boundingRect(contour)
             center_x = int(x + w / 2)
             center_y = int(y + h / 2)
-            cv2.circle(bar_path, (center_x, center_y), radius=10, color=(0, 255, 0), thickness=-1)
+            cv2.circle(bar_path, (center_x, center_y), radius=10, color=(0, 0, 0), thickness=-1)
 
             
             contour_x = center_x
@@ -91,7 +91,7 @@ while True:
     tracked_ascent_image = np.zeros((height, width, 3), dtype=np.uint8)
 
     cv2.polylines(tracked_descent_image, [tracked_descent_points_array], isClosed=False, color = (255, 255, 255, 255), thickness=15)
-    cv2.polylines(tracked_ascent_image, [tracked_ascent_points_array], isClosed=False, color = (255, 255, 0, 255), thickness=15)
+    cv2.polylines(tracked_ascent_image, [tracked_ascent_points_array], isClosed=False, color = (255, 255, 255, 255), thickness=15)
 
     
 
@@ -124,9 +124,9 @@ while True:
     
 
     # Draw the curve on the ideal_path image using cv2.polylines
-    cv2.polylines(ideal_path_descent, [points_array_descent], isClosed=False, color=(0 ,0 ,255), thickness=10)
+    cv2.polylines(ideal_path_descent, [points_array_descent], isClosed=False, color=(0, 255, 0), thickness=10)
 
-    cv2.polylines(ideal_path_ascent, [points_array_ascent], isClosed=False, color=(255, 0, 0), thickness=10)
+    cv2.polylines(ideal_path_ascent, [points_array_ascent], isClosed=False, color=(0, 255, 0), thickness=10)
 
     cumulative_frame = cv2.addWeighted(frame, 1, bar_path, 1, 0)
 
