@@ -135,6 +135,13 @@ const Login = () => {
     const response = await loginUser(formData)
 
     console.log(response)
+
+    if(response.data) {
+      clearTextInput()
+      window.open("/dashboard", "_self")
+    } else {
+      
+    }
   }
   return (
     
@@ -161,7 +168,7 @@ const Login = () => {
 
       </StyledForm>
       <StyledButtons>
-          <StyledButton type="submit">Log In</StyledButton>
+          <StyledButton type="submit" onClick={handleFormSubmit}>Log In</StyledButton>
           <a href="http://localhost:3000/" > <StyledButton invert >Home</StyledButton> </a>
       </StyledButtons>
 
