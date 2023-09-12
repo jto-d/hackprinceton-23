@@ -1,4 +1,4 @@
-**NOTE: Run local server in Safari
+***NOTE: Run local server in Safari
 
 Frontend terminal:
 
